@@ -1,0 +1,8 @@
+# Bazel will create symlinks from the workspace directory to output artifacts.
+# Build results will be placed in a directory called ".bazel/bin"
+# Other directories will be created like ".bazel/testlogs"
+build --symlink_prefix=.bazel/
+
+# Cache action outputs on local disk so they persist across output_base and
+# bazel shutdown (eg. changing branches)
+build --disk_cache=~/.cache/bazel-disk-cache
