@@ -1,5 +1,7 @@
 workspace(name="example")
 
-load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+load("//bazel:deps.bzl", "load_external_workspaces")
+load_external_workspaces()
 
-bazel_skylib_workspace()
+load("//bazel/js:deps.bzl", "setup_js")
+setup_js()
