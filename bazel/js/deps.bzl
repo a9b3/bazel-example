@@ -1,17 +1,16 @@
+"""Javascript workspace setup.
+"""
+
 load(
   "@build_bazel_rules_nodejs//:index.bzl",
   "node_repositories",
   "npm_install",
-  _pkg_npm = "pkg_npm",
-  _js_library = "js_library",
 )
-
-# Re-export repository-wide js rules.
-pkg_npm = _pkg_npm
-js_library = _js_library
 
 def setup_js():
   """Setup javascript deps.
+
+  Install all required javascript packages.
   """
   node_repositories(
      node_repositories = {

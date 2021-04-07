@@ -1,6 +1,0 @@
-load("//bazel/js:index.bzl", "ts_project", "nodejs_binary")
-
-ts_project(
-  name = "lib",
-  srcs =["index.ts"],
-)

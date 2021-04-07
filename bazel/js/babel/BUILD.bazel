@@ -1,1 +1,1 @@
-exports_files([".babelrc.js"])
+exports_files(["babelrc.js"])
