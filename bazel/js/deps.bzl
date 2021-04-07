@@ -1,7 +1,14 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install", "yarn_install", _pkg_npm = "pkg_npm")
+load(
+  "@build_bazel_rules_nodejs//:index.bzl",
+  "node_repositories",
+  "npm_install",
+  _pkg_npm = "pkg_npm",
+  _js_library = "js_library",
+)
 
 # Re-export repository-wide js rules.
 pkg_npm = _pkg_npm
+js_library = _js_library
 
 def setup_js():
   """Setup javascript deps.
@@ -25,5 +32,12 @@ def setup_js():
     name="bazel_js_babel_npm_deps",
     package_json = "//bazel/js/babel:package.json",
     package_lock_json = "//bazel/js/babel:package-lock.json",
+    symlink_node_modules = False,
+  )
+
+  npm_install(
+    name="bazel_js_typescript_npm_deps",
+    package_json = "//bazel/js/typescript:package.json",
+    package_lock_json = "//bazel/js/typescript:package-lock.json",
     symlink_node_modules = False,
   )
