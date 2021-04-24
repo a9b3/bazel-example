@@ -1,0 +1,56 @@
+load("//bazel/js:index.bzl", "pkg_npm", "js_library", "babel", "tsc")
+
+babel(
+  name = "transpile",
+  args = [
+    "typescript/shared_pkg/src",
+    "--out-dir",
+    "$(@D)",
+    "--extensions",
+    ".ts",
+    "--config-file",
+    "./$(execpath //bazel/js/babel:babelrc.js)"
+  ],
+  data = glob(["src/**/*"]) + [
+    # make available to bazel
+    "//bazel/js/babel:babelrc.js",
+    # babelrc has dependencies on node_modules
+    "@bazel_js_babel_npm_deps//:node_modules",
+  ],
+  output_dir = True,
+)
+
+tsc(
+  name = "typescript",
+  args = [
+    "-p",
+    "$(execpath tsconfig.json)",
+    "--outDir",
+    "$(@D)",
+  ],
+  data = glob(["src/**/*"]) + [
+    "tsconfig.json",
+  ],
+  output_dir = True,
+)
+
+pkg_npm(
+  name = "pkg",
+  srcs = [
+    "package.json",
+  ],
+  nested_packages = [
+    ":transpile",
+    ":typescript",
+  ]
+)
+
+js_library(
+  name = "lib",
+  package_name = "example/typescript/shared_pkg",
+  visibility = ["//visibility:public"],
+  srcs = [
+    "package.json",
+    ":pkg",
+  ],
+)

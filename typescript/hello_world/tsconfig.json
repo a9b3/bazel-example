@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    // import resolution for non-absolute module names
+    "baseUrl": ".",
+    // fix non es6 module imports to match es6 spec
+    // https://www.typescriptlang.org/tsconfig#esModuleInterop
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "jsx": "react",
+    // native type definitions
+    "lib": ["DOM", "ES2020"],
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "preserveConstEnums": true,
+    // match bazel import naming
+    "paths": {
+      "example/*": ["../../*"]
+    },
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES6",
+    "types": []
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@example/shared_pkg",
+  "version": "1.0.0",
+  "description": "Example of a private module.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "/pkg",
+    "index.js",
+    "index.d.ts",
+    "/dist"
+  ]
+}

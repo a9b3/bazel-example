@@ -1,0 +1,21 @@
+load("//bazel/js:index.bzl", "ts_project", "nodejs_binary", "js_library")
+
+js_library(
+    name = "lib",
+    deps = [
+      "//js/module:lib"
+    ],
+    visibility = ["//visibility:public"],
+    srcs = [
+      "index.js",
+    ],
+)
+
+nodejs_binary(
+  name = "bin",
+  data = [
+      ":lib",
+      ":package.json"
+          ],
+  entry_point = "index.js",
+)

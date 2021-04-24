@@ -1,0 +1,14 @@
+load("//bazel/js:index.bzl", "ts_project", "nodejs_binary")
+
+ts_project(
+  name = "lib",
+  srcs = ["index.ts"],
+  tsconfig = ":tsconfig.json",
+  deps = ["//typescript/shared_pkg:lib"],
+)
+
+nodejs_binary(
+  name = "bin",
+  data = [":lib"],
+  entry_point = ":index.ts",
+)

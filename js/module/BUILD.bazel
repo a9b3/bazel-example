@@ -1,0 +1,10 @@
+load("//bazel/js:index.bzl", "js_library")
+
+js_library(
+  name = "lib",
+  package_name = "@example/js/module",
+  visibility = ["//visibility:public"],
+  srcs = [
+    "index.js",
+  ],
+)
